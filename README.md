@@ -34,6 +34,10 @@ mediator.subscribe( 'my/topic/with/:tokens', myCallbackFn );
 mediator.subscribe( 'my/topic/without/tokens', myObj.method, myObj );
 ```
 
+The callback will be invoked in the context of the receiver with arguments
+of `[topic, ...arg]`.  This is how your callback knows which event triggered
+it when a token or wildcard was used to register it.
+
 ### .publish( topic\[, ...arg\] )
 
 Publish topics.  Data arguments are optional.
@@ -52,6 +56,9 @@ mediator.publish( 'call/server' ).then( doSomething );
 
 ### .unsubscribe( topic, callback\[, receiver\] );
 
+Remove all callbacks subscribed with the same parameters.
+
 ```js
 mediator.unsubscribe( 'my/topic', myCallback );
+mediator.unsubscribe( 'my/topic', myObj.method, myObj );
 ```
