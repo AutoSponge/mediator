@@ -12,5 +12,47 @@
   "scripts": {
     "test": "tape test/*.js",
     "jshint": "jshint --reporter=node_modules/jshint-stylish/stylish.js *.js src/*.js"
-  }
+  },
+    "name": "accu-router",
+    "description": "A mediator built on accu-router",
+    "keywords": [
+        "router"
+    ],
+    "homepage": "https://github.com/AutoSponge/mediator",
+    "version": "0.0.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AutoSponge/mediator"
+    },
+    "bugs": {
+        "url": "https://github.com/AutoSponge/mediator/issues",
+        "email": "pgrenier@gmail.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/AutoSponge/mediator/blob/master/LICENSE"
+        }
+    ],
+    "author": "Paul Grenier <pgrenier@gmail.com> (http://autosponge.github.io/)",
+    "engines": {
+        "node": "*"
+    },
+    "testling": {
+        "files": "test/*.js",
+        "browsers": [
+            "ie/9..latest",
+            "chrome/4..latest",
+            "firefox/4..latest",
+            "safari/4..latest",
+            "opera/11.0..latest",
+            "iphone/6..latest",
+            "ipad/6..latest",
+            "android-browser/4.2..latest"
+        ]
+    },
+    "directories": {
+        "test": "test"
+    },
+    "license": "MIT"
 }
