@@ -2,9 +2,11 @@ var test = require( 'tape' );
 var Mediator = require( '../' );
 
 test( 'Mediator', function ( t ) {
-    t.plan( 1 );
+    t.plan( 3 );
 
     t.ok( (new Mediator()) instanceof Mediator, 'Mediator should instantiate' );
+    t.ok( Mediator.instance instanceof Mediator, 'Mediator should instantiate' );
+    t.ok( Mediator.create() instanceof Mediator, 'Mediator should instantiate' );
 
 } );
 
@@ -47,10 +49,10 @@ test( 'Mediator callback receives path and args', function ( t ) {
         c = _c;
     } );
     mediator.publish( 'test', 1, '2', true );
-    t.equal( path, 'test' );
-    t.equal( a, 1 );
-    t.equal( b, '2' );
-    t.equal( c, true );
+    t.equal( path, 'test', 'path should be test' );
+    t.equal( a, 1,'a should be 1' );
+    t.equal( b, '2', 'b should be 2' );
+    t.equal( c, true, 'c should be true' );
 
 } );
 
@@ -80,6 +82,7 @@ test( 'Mediator unsubscribe', function ( t ) {
     var mediator = new Mediator();
     var a = 0;
     var b = 0;
+    var obj = {};
     var callbackA = function ( _, _a ) { a = _a; };
     var callbackB = function ( _, _b ) { b = _b; };
     t.equal( a, 0 );
@@ -89,16 +92,15 @@ test( 'Mediator unsubscribe', function ( t ) {
     t.equal( a, 1 );
     t.equal( b, 0 );
     mediator.unsubscribe( 'test', callbackA );
-    mediator.unsubscribe( 'test', callbackB );
     t.equal( mediator.publish( 'test', 'bad' ), false );
     t.equal( a, 1 );
     t.equal( b, 0 );
-    mediator.subscribe( 'test', callbackA );
+    mediator.subscribe( 'test', callbackA, obj );
     mediator.subscribe( 'test', callbackB );
     mediator.publish( 'test', 2 );
     t.equal( a, 2 );
     t.equal( b, 2 );
-    mediator.unsubscribe( 'test', callbackA );
+    mediator.unsubscribe( 'test', callbackA, obj );
     mediator.publish( 'test', 3 );
     t.equal( a, 2 );
     t.equal( b, 3 );
