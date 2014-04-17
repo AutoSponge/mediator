@@ -13,7 +13,7 @@
     "test": "tape test/*.js",
     "jshint": "jshint --reporter=node_modules/jshint-stylish/stylish.js *.js src/*.js"
   },
-  "name": "accu-router",
+  "name": "accu-mediator",
   "description": "A mediator built on accu-router",
   "keywords": [
     "router"
